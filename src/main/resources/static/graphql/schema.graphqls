@@ -5,12 +5,21 @@ schema {
 type Query {
     allCities: [City]
     city(id: Long!): City
+
+    allUsers: [User]
+    user(id: Long!): User
 }
 
 type City {
-    id: Int!
+    id: Long!
     name: String!
     population: Int!
+}
+
+type User {
+    id: Long!
+    email: String!
+    name: String!
 }
 
 scalar Long

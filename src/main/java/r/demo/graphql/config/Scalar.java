@@ -16,7 +16,7 @@ public class Scalar {
                     @Override
                     public Integer serialize(final Object dataFetcherResult) throws CoercingSerializeException {
                         if (dataFetcherResult instanceof Long) {
-                            return (int) dataFetcherResult;
+                            return ((Long) dataFetcherResult).intValue();
                         } else {
                             throw new CoercingSerializeException("Expected a Long object.");
                         }
