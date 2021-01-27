@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "graphql.spqr.gui.enabled",
+      "type": "java.lang.Boolean",
+      "description": "enable graphQL api documentation gui."
+    }
+  ]
+}
