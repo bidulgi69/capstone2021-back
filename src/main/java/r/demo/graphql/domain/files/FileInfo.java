@@ -2,7 +2,7 @@ package r.demo.graphql.domain.files;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(schema = "demo", name = "file")
 public class FileInfo {

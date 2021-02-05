@@ -38,3 +38,6 @@ graphql:
 #      schema.polling.interval: 2000
 #      schema.disableComments: true
 #      tracing.hideTracingResponse: true
+
+jwt:
+  secret: DOVE

@@ -2,6 +2,7 @@ package r.demo.graphql.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import r.demo.graphql.domain.files.FileInfo;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
 @Entity
 @Table(schema = "demo", name = "user")
 public class UserInfo {
@@ -25,6 +27,9 @@ public class UserInfo {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "authority", nullable = false, length = 30)
+    private String authority;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile", referencedColumnName = "id")
@@ -45,6 +50,7 @@ public class UserInfo {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.authority = "ROLE_USER";
         this.profile = file;
     }
 }

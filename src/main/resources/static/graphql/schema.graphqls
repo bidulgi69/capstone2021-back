@@ -1,13 +1,21 @@
 schema {
     query: Query
+    mutation: Mutation
+    subscription: SubScription
 }
 
 type Query {
-    allCities: [City]
-    city(id: Long!): City
-
     allUsers: [User]
-    user(id: Long!): User
+    user: User
+    login(id: String!, password: String!): Token
+}
+
+type Mutation {
+    sign(id: String!, password: String!, name: String!): Int
+}
+
+type SubScription {
+
 }
 
 type City {
@@ -20,6 +28,12 @@ type User {
     id: Long!
     email: String!
     name: String!
+    authority: String
+}
+
+type Token {
+    status: Int!
+    token: String
 }
 
 scalar Long

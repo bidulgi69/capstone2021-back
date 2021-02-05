@@ -7,7 +7,6 @@ import r.demo.graphql.annotation.GqlDataFetcher;
 import r.demo.graphql.annotation.GqlType;
 import r.demo.graphql.domain.CityRepository;
 
-@Gql
 @Component
 public class CityDataFetcher {
     private final CityRepository cityRepository;
