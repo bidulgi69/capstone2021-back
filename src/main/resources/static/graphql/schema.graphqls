@@ -8,20 +8,17 @@ type Query {
     allUsers: [User]
     user: User
     login(id: String!, password: String!): Token
+
+    categories: [Category!]
 }
 
 type Mutation {
     sign(id: String!, password: String!, name: String!): Int
+    createCategory(title: String!): Int!
 }
 
 type SubScription {
 
-}
-
-type City {
-    id: Long!
-    name: String!
-    population: Int!
 }
 
 type User {
@@ -34,6 +31,18 @@ type User {
 type Token {
     status: Int!
     token: String
+}
+
+type Category {
+    id: Long!
+    name: String!
+    contents: [Content!]!
+}
+
+type Content {
+    id: Long!
+    category: [Category!]!,
+    title: String!
 }
 
 scalar Long

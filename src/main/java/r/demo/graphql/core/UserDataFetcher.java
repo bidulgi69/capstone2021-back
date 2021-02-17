@@ -7,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.web.context.request.WebRequest;
 import r.demo.graphql.annotation.Gql;
 import r.demo.graphql.annotation.GqlDataFetcher;
 import r.demo.graphql.annotation.GqlType;
