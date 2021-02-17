@@ -3,6 +3,7 @@ package r.demo.graphql.domain.category;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import r.demo.graphql.domain.content.Content;
@@ -41,6 +42,10 @@ public class Category {
 
     @Builder
     public Category(String name) {
+        this.name = name;
+    }
+
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 }

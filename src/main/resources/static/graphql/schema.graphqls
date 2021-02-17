@@ -15,6 +15,8 @@ type Query {
 type Mutation {
     sign(id: String!, password: String!, name: String!): Int
     createCategory(title: String!): Int!
+    updateCategory(id: Int!, title: String!): Int!
+    deleteCategory(id: Int!): Int!
 }
 
 type SubScription {
