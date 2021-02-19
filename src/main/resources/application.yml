@@ -41,3 +41,5 @@ graphql:
 
 jwt:
   secret: DOVE
+project:
+  name: capstone2021-305109
