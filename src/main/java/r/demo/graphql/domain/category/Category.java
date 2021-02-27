@@ -1,9 +1,6 @@
 package r.demo.graphql.domain.category;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import r.demo.graphql.domain.content.Content;
@@ -17,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(schema = "demo", name = "category")
+@ToString
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

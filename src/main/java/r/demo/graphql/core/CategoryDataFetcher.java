@@ -11,18 +11,21 @@ import r.demo.graphql.annotation.GqlType;
 import r.demo.graphql.domain.category.Category;
 import r.demo.graphql.domain.category.CategoryRepo;
 import r.demo.graphql.domain.content.Content;
+import r.demo.graphql.domain.content.ContentRepo;
 
-import java.util.Set;
+import java.util.*;
 
 @Gql
 @Service
 public class CategoryDataFetcher {
     private final ContentDataFetcher contentDataFetcher;
     private final CategoryRepo categoryRepo;
+    private final ContentRepo contentRepo;
 
-    public CategoryDataFetcher(@Lazy ContentDataFetcher contentDataFetcher, CategoryRepo categoryRepo) {
+    public CategoryDataFetcher(@Lazy ContentDataFetcher contentDataFetcher, CategoryRepo categoryRepo, ContentRepo contentRepo) {
         this.contentDataFetcher = contentDataFetcher;
         this.categoryRepo = categoryRepo;
+        this.contentRepo = contentRepo;
     }
 
     @GqlDataFetcher(type = GqlType.QUERY)
@@ -56,7 +59,6 @@ public class CategoryDataFetcher {
                 String title = environment.getArgument("title");
                 long id = Long.parseLong(environment.getArgument("id").toString());
 
-                System.out.println(title + " // " + id);
                 Category category = categoryRepo.findById(id).orElseThrow(IndexOutOfBoundsException::new);
                 if (!title.equals(category.getName()))
                     category.setName(title);

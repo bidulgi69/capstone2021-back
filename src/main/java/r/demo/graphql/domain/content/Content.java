@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import r.demo.graphql.domain.category.Category;
+import r.demo.graphql.domain.sentence.Sentence;
 import r.demo.graphql.domain.user.UserInfo;
+import r.demo.graphql.domain.word.Word;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,16 +23,14 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = { CascadeType.DETACH })
-    @JoinTable(name = "category_contents",
-            joinColumns = @JoinColumn(name = "contents_idx", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "category_idx", referencedColumnName = "id"))
-    private final Set<Category> category = new HashSet<>();
-
     @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "ref", columnDefinition = "TEXT", nullable = false)
+    private String ref;
+
+    @Column(name = "captions", columnDefinition = "LONGTEXT", nullable = false)
+    private String captions;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "registerer", referencedColumnName = "id")
@@ -46,9 +46,33 @@ public class Content {
     @Column(name = "modified", nullable = false)
     private java.util.Date modified;
 
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = { CascadeType.DETACH })
+    @JoinTable(name = "category_contents",
+            joinColumns = @JoinColumn(name = "contents_idx", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_idx", referencedColumnName = "id"))
+    private final Set<Category> category = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = { CascadeType.PERSIST },
+            orphanRemoval = true,
+            mappedBy = "content")
+    private Set<Word> words;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = { CascadeType.PERSIST },
+            orphanRemoval = true,
+            mappedBy = "content")
+    private Set<Sentence> sentences;
+
     @Builder
-    public Content(String title, UserInfo user, Set<Category> categories) {
+    public Content(String title, String ref, String captions, UserInfo user, Set<Category> categories) {
         this.title = title;
+        this.ref = ref;
+        this.captions = captions;
         this.registerer = user;
         this.category.addAll(categories);
     }

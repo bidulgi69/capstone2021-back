@@ -62,7 +62,6 @@ public class UserDataFetcher {
             } catch (NullPointerException e) {
                 status = HttpStatus.NOT_FOUND.value();
             }
-            System.out.println("TOKEN: " + token);
             return new Token(status, token);
         };
     }
@@ -76,7 +75,7 @@ public class UserDataFetcher {
                 String id = environment.getArgument("id"),
                         password = environment.getArgument("password"),
                         name = environment.getArgument("name");
-               if (userRepo.existsByEmail(id)) throw new RuntimeException();
+                if (userRepo.existsByEmail(id)) throw new RuntimeException();
                 else {
                     userRepo.save(UserInfo.builder()
                             .email(id).password(encoder.encode(password)).name(name).build());

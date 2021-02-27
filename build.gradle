@@ -41,10 +41,14 @@ dependencies {
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     // https://mvnrepository.com/artifact/junit/junit
     testImplementation group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-corenlp
+    implementation group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '4.2.0'
 
     // google translate libs
     implementation platform('com.google.cloud:libraries-bom:16.4.0')
     compile 'com.google.cloud:google-cloud-translate'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
